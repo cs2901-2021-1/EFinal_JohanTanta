@@ -53,6 +53,7 @@ public class Aplicacion {
 
     public void notificar(CentroDeVacunacion centroDeVacunacion, PersonaVacunada personaVacunada){
         if(centroDeVacunacion.getDarDeAlta()) {
+            logger.info("Nueva notificacion");
             logger.info("Nueva persona vacunada");
             logger.info("DNI de la persona vacunada: " + personaVacunada.getDni());
             logger.info("En el centro de vacunacion con ID: " + centroDeVacunacion.getId());

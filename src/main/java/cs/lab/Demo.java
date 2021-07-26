@@ -11,6 +11,8 @@ public class Demo {
 
         Usuario usuario = new Usuario();
         Scanner input = new Scanner(System.in);
+        logger.info("Inserte su username: ");
+        logger.info("Inerte su password: ");
         usuario.setUsername(input.nextLine());
         usuario.setPassword(input.nextLine());
 
@@ -29,15 +31,19 @@ public class Demo {
         }else{
             logger.info("Login invalido");
         }
-        logger.info("Dar de alta al centro1 con id: " + 100);
-        instance.darDeAlta(usuario, centro1.getId());
+        logger.info("Dar de baja al centro1 con id: 100");
+        instance.darDeBaja(usuario, centro1.getId());
+        logger.info("Se vacuna un nueva persona en el centro1 con dni: 72789435");
+        PersonaVacunada persona1 = new PersonaVacunada("Ronaldo", "Tanta", 25, "72789435");
+        centro1.agregarPersonaVacunada(persona1);
+        logger.info("La aplicacion no notifica");
 
-        logger.info("Se vacuna un nueva persona en el centro1 con dni: 72789412");
-        PersonaVacunada personaVacunada = new PersonaVacunada("Johan", "Tanta", 21, "72789412");
-        centro1.agregarPersonaVacunada(personaVacunada);
+        logger.info("Dar de alta al centro2 con id: 101");
+        instance.darDeAlta(usuario, centro2.getId());
 
-
-
+        logger.info("Se vacuna un nueva persona en el centro2 con dni: 72789412");
+        PersonaVacunada persona2 = new PersonaVacunada("Johan", "Tanta", 21, "72789412");
+        centro1.agregarPersonaVacunada(persona2);
+        logger.info("La aplicacion si notifica");
     }
-
 }
