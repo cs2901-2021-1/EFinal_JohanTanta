@@ -3,11 +3,18 @@ package cs.lab;
 public class PersonaVacunada {
     private String nombres;
     private String apellidos;
-    private Integer edades;
+    private int edad;
     private String dni;
 
     PersonaVacunada(){
         
+    }
+
+    public PersonaVacunada(String nombres, String apellidos, int edad, String dni) {
+        this.setNombres(nombres);
+        this.setApellidos(apellidos);
+        this.setEdad(edad);
+        this.setDni(dni);
     }
 
     public String getNombres() {
@@ -26,12 +33,12 @@ public class PersonaVacunada {
         this.apellidos = apellidos;
     }
 
-    public Integer getEdades() {
-        return edades;
+    public int getEdad() {
+        return edad;
     }
 
-    public void setEdades(Integer edades) {
-        this.edades = edades;
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 
     public String getDni() {

@@ -20,19 +20,23 @@ public class Aplicacion {
         return instance;
     }
 
-    public Boolean login(Usuario usuario){
+    public void login(Usuario usuario){
         String username = usuario.getUsername();
         String password = usuario.getPassword();
         if(username.length() != password.length()) {
-            return false;
+            usuario.setLogeado(false);
         }
         int size = username.length();
         for(int i = 0; i < username.length(); ++i){
             if(username.charAt(i) != password.charAt(size - i - 1)){
-                return false;
+                usuario.setLogeado(false);
             }
         }
-        return true;
+        usuario.setLogeado(true);
+    }
+
+    public void cerrarSesion(Usuario usuario){
+        usuario.setLogeado(false);
     }
 
     public List<CentroDeVacunacion> getCentrosDeVacunacion() {
@@ -47,10 +51,33 @@ public class Aplicacion {
         return centrosDeVacunacion.size();
     }
 
-    public void notificar(int idCentroDeVacunacion, PersonaVacunada personaVacunada){
-        logger.info("Nueva persona vacunada");
-        logger.info("DNI de la persona vacunada: " + personaVacunada.getDni());
-        logger.info("En el centro de vacunacion con ID: " + idCentroDeVacunacion);
+    public void notificar(CentroDeVacunacion centroDeVacunacion, PersonaVacunada personaVacunada){
+        if(centroDeVacunacion.getDarDeAlta()) {
+            logger.info("Nueva persona vacunada");
+            logger.info("DNI de la persona vacunada: " + personaVacunada.getDni());
+            logger.info("En el centro de vacunacion con ID: " + centroDeVacunacion.getId());
+        }
     }
+
+    public void darDeAlta(Usuario usuario, int idCentroDeVacunacion){
+        if(usuario.getLogeado()){
+            setDarDeAltaCentroDeVacunacion(idCentroDeVacunacion, true);
+        }
+    }
+
+    public void darDeBaja(Usuario usuario, int idCentroDeVacunacion){
+        if(usuario.getLogeado()){
+            setDarDeAltaCentroDeVacunacion(idCentroDeVacunacion, false);
+        }
+    }
+
+    public void setDarDeAltaCentroDeVacunacion(int idCentroDeVacunacion, Boolean darDeAlta){
+        for(CentroDeVacunacion centro : centrosDeVacunacion){
+            if(centro.getId() == idCentroDeVacunacion){
+                centro.setDarDeAlta(darDeAlta);
+            }
+        }
+    }
+
 
 }
