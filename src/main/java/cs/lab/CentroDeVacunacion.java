@@ -7,6 +7,10 @@ public class CentroDeVacunacion {
     private Integer id;
     List<PersonaVacunada> personasVacunadas;
 
+    public CentroDeVacunacion(){
+        personasVacunadas = new ArrayList<>();
+    }
+
     void agregarPersonaVacunada(PersonaVacunada personaVacunada){
         personasVacunadas.add(personaVacunada);
         Aplicacion.getInstance().notificar(id, personaVacunada);
